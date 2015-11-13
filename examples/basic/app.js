@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var clickDrag = require('../../lib/clickdrag');
 
 var ExampleComponent = React.createClass({
@@ -40,4 +41,4 @@ var ExampleComponent = React.createClass({
 
 var ClickDragExample = clickDrag(ExampleComponent, {touch: true});
 
-React.render(React.createElement(ClickDragExample), document.getElementById('App'));
+ReactDOM.render(React.createElement(ClickDragExample), document.getElementById('App'));

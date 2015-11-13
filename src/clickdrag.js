@@ -1,9 +1,8 @@
-'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import objectAssign from 'react/lib/Object.assign';
 
-var React = require('react');
-var objectAssign = require('react/lib/Object.assign');
-
-var noop = function() {};
+var noop = () => {};
 
 function clickDrag(Component, opts = {}) {
 
@@ -15,8 +14,9 @@ function clickDrag(Component, opts = {}) {
     var onDragStop = opts.onDragStop || noop;
     var onDragMove = opts.onDragMove || noop;
 
-    return class extends React.Component {
-        constructor() {
+    class ClickDrag extends React.Component {
+        constructor(props, context) {
+            super(props, context)
             this._onMouseDown = this._onMouseDown.bind(this);
             this._onMouseUp = this._onMouseUp.bind(this);
             this._onMouseMove = this._onMouseMove.bind(this);
@@ -34,7 +34,7 @@ function clickDrag(Component, opts = {}) {
         }
 
         componentDidMount() {
-            var node = React.findDOMNode(this);
+            var node = ReactDOM.findDOMNode(this);
 
             node.addEventListener('mousedown', this._onMouseDown);
             document.addEventListener('mousemove', this._onMouseMove);
@@ -116,9 +116,10 @@ function clickDrag(Component, opts = {}) {
         }
 
         render() {
-            return <Component {...this.props} dataDrag={this.state} />;
+            return (<Component {...this.props} dataDrag={this.state} />);
         }
     };
+    return ClickDrag;
 }
 
 module.exports = clickDrag;

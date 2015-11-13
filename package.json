@@ -31,7 +31,12 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "build": "babel src/clickdrag.js -o lib/clickdrag.js",
-    "dev": "babel src/clickdrag.js -w -o lib/clickdrag.js"
+    "build": "babel src/clickdrag.js -o lib/clickdrag.js --presets \"react,es2015\"",
+    "dev": "babel src/clickdrag.js -w -o lib/clickdrag.js --presets \"react,es2015\""
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.4",
+    "babel-preset-react": "^6.1.4",
+    "react-dom": "^0.14.2"
   }
 }
